@@ -7,7 +7,9 @@ void main() {
   hitungBMI(165, 75, riwayat);
   hitungBMI(180, 85, riwayat);
 
-  print("Input berhasil diterima");
+  print("Input berhasil diterima\n");
+
+  tampilkanRiwayat(riwayat);
 }
 
 void hitungBMI(double tinggiCm, double beratKg, List riwayat) {
@@ -16,7 +18,8 @@ void hitungBMI(double tinggiCm, double beratKg, List riwayat) {
 
   // Hitung BMI
   double bmi = beratKg / (tinggiM * tinggiM);
-  //menentukan kategori menggunakan percabangan
+  
+  // Menentukan kategori menggunakan percabangan
   String kategori;
   if (bmi < 18.5) {
     kategori = "Kurus";
@@ -34,7 +37,19 @@ void hitungBMI(double tinggiCm, double beratKg, List riwayat) {
     "bmi": bmi,
     "kategori": kategori
   });
+} 
 
-  print("Data masuk -> Tinggi: $tinggiCm cm, Berat: $beratKg kg");
-
+// menampilkan riwayat dengan perulangan
+void tampilkanRiwayat(List riwayat) {
+  print("--- Riwayat Perhitungan BMI ---");
+  
+  // Menggunakan perulangan untuk membaca isi List riwayat
+  for (int i = 0; i < riwayat.length; i++) {
+    var data = riwayat[i];
+    
+    // toStringAsFixed(2) dipakai agar angka di belakang koma tidak terlalu panjang
+    String bmiFormat = data["bmi"].toStringAsFixed(2); 
+    
+    print("${i + 1}. Tinggi: ${data["tinggi"]} cm, Berat: ${data["berat"]} kg | BMI: $bmiFormat -> ${data["kategori"]}");
+  }
 }
